@@ -23,4 +23,11 @@ router.post('/authors/edit/:id', authorController.updateAuthor);
 router.get('/authors/add', authorController.renderAddForm);
 router.post('/authors/add', authorController.addAuthor);
 router.get('/authors/delete/:id', authorController.deleteAuthor);
+
+
+router.post('/authors/:authorId/enroll/', authorController.WriteAuthor);
+router.get('/authors/:authorId/removeBook/:bookId', authorController.removeBook);
+
+router.post('/books/:bookId/enroll/', bookController.writeAuthor);
+router.get('/books/:bookId/removeAuthor/:authorId', bookController.removeAuthor);
 module.exports = router;

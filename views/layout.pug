@@ -4,4 +4,16 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    nav
+      div.store-name Book Store
+
+      div.nav-content
+        ul
+          li
+          a(href="/books") Books
+          li
+          a(href="/authors") Authors
+      div
+    div.container
+      div.content-container
+        block content

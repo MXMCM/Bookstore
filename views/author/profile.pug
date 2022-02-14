@@ -7,5 +7,36 @@ block content
     div
         h3 Name: #{author.first_name} #{author.last_name}
         p Date Of Birth: #{author.dob}
-    div.authors
-        
+        h4 Author's Books
+        if availableBooks.length > 0
+            form(action= `/authors/${author.id}/enroll/` method='post')
+                select(name='book' id='book' autocomplete=off)
+                    each book in availableBooks
+                        option(value=book.id) #{book.title}
+                button.button.primary(type='submit') Write
+        else
+            p No remaining books are available to write in.
+        h4 Books Written
+
+                table
+                    thead
+                        tr
+                            th Book Title
+                            th Publisher
+                            th Genre
+                            th Pages
+                            th Description
+                    tbody
+                        each book in author.books
+                            tr
+                                td= book.title
+                                td= book.publisher
+                                td= book.genre
+                                td= book.pages
+                                td= book.description
+                                td
+                                    a(href= `/books/profile/${book.id}`) View Book
+                                    br
+                                    br
+                                    a(href=`/authors/${author.id}/removeBook/${book.id}`) Remove Book
+        a(href='/authors') Back To Authors
